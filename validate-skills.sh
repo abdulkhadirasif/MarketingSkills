@@ -7,7 +7,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-SKILLS_DIR="skills"
+SKILLS_DIR=".github/skills"
 ISSUES=0
 WARNINGS=0
 PASSED=0

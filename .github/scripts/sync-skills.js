@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 /**
- * Sync marketplace.json and README.md with skills directory.
+ * Sync marketplace.json and README.md with the Copilot skills directory.
  *
- * Scans the skills/ directory for valid skills (directories containing SKILL.md)
+ * Scans .github/skills/ for valid skills (directories containing SKILL.md)
  * and updates marketplace.json and the README skills table to match.
  */
 
 const fs = require("fs");
 const path = require("path");
 
-const SKILLS_DIR = "skills";
+const SKILLS_DIR = ".github/skills";
 const MARKETPLACE_FILE = ".claude-plugin/marketplace.json";
 const README_FILE = "README.md";
 
@@ -17,7 +17,7 @@ const README_FILE = "README.md";
  * Parse YAML frontmatter from a SKILL.md file
  */
 function parseFrontmatter(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---/);
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return {};
 
   const frontmatter = {};
@@ -98,7 +98,7 @@ function truncateDescription(description, maxLength = 120) {
 function generateSkillsTable(skills) {
   const header = "| Skill | Description |\n|-------|-------------|";
   const rows = skills.map((skill) => {
-    const link = `[${skill.name}](skills/${skill.dir}/)`;
+    const link = `[${skill.name}](${SKILLS_DIR}/${skill.dir}/)`;
     const description = truncateDescription(skill.description);
     return `| ${link} | ${description} |`;
   });
@@ -113,7 +113,7 @@ function updateReadme(skills) {
   const content = fs.readFileSync(README_FILE, "utf8");
 
   // Match content between skill list markers
-  const tableRegex = /(<!-- SKILLS:START -->\n)[\s\S]*?(\n<!-- SKILLS:END -->)/;
+  const tableRegex = /(<!-- SKILLS:START -->\r?\n)[\s\S]*?(\r?\n<!-- SKILLS:END -->)/;
   const newTable = generateSkillsTable(skills);
 
   if (!tableRegex.test(content)) {

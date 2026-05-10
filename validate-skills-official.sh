@@ -3,7 +3,7 @@
 # Validation script using official skills-ref library
 # https://github.com/agentskills/agentskills/tree/main/skills-ref
 
-SKILLS_DIR="skills"
+SKILLS_DIR=".github/skills"
 SKILLS_REF_DIR="/tmp/agentskills/skills-ref"
 
 echo "🔍 Validating Skills Using Official skills-ref Library"

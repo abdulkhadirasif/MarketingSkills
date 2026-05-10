@@ -4,7 +4,7 @@ Guidelines for AI agents working in this repository.
 
 ## Repository Overview
 
-This repository contains **Agent Skills** for AI agents following the [Agent Skills specification](https://agentskills.io/specification.md). Skills install to `.agents/skills/` (the cross-agent standard). This repo also serves as a **Claude Code plugin marketplace** via `.claude-plugin/marketplace.json`.
+This repository contains **Agent Skills** for AI agents following the [Agent Skills specification](https://agentskills.io/specification.md). For GitHub Copilot in VS Code, project skills live in `.github/skills/`. Skills can also install to `.agents/skills/` for cross-agent use. This repo also serves as a **Claude Code plugin marketplace** via `.claude-plugin/marketplace.json`.
 
 - **Name**: Marketing Skills
 - **GitHub**: [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
@@ -15,16 +15,18 @@ This repository contains **Agent Skills** for AI agents following the [Agent Ski
 
 ```
 marketingskills/
+├── .github/
+│   ├── copilot-instructions.md  # GitHub Copilot repository instructions
+│   └── skills/                  # GitHub Copilot project skills
+│       └── skill-name/
+│           └── SKILL.md         # Required skill file
 ├── .claude-plugin/
-│   └── marketplace.json   # Claude Code plugin marketplace manifest
-├── skills/                # Agent Skills
-│   └── skill-name/
-│       └── SKILL.md       # Required skill file
+│   └── marketplace.json         # Claude Code plugin marketplace manifest
 ├── tools/
-│   ├── clis/              # Zero-dependency Node.js CLI tools (51 tools)
-│   ├── composio/          # Composio integration layer (quick start + toolkit mapping)
-│   ├── integrations/      # API integration guides per tool
-│   └── REGISTRY.md        # Tool index with capabilities
+│   ├── clis/                    # Zero-dependency Node.js CLI tools (51 tools)
+│   ├── composio/                # Composio integration layer (quick start + toolkit mapping)
+│   ├── integrations/            # API integration guides per tool
+│   └── REGISTRY.md              # Tool index with capabilities
 ├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
@@ -79,8 +81,8 @@ description: What this skill does and when to use it. Include trigger phrases.
 
 ### Optional Skill Directories
 
-```
-skills/skill-name/
+`
+.github/skills/skill-name/
 ├── SKILL.md        # Required - main instructions (<500 lines)
 ├── references/     # Optional - detailed docs loaded on demand
 ├── scripts/        # Optional - executable code

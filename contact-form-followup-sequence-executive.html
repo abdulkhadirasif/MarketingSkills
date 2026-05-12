@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Follow-Up Email Sequence | Zensar Technologies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 25px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-item strong {
+            color: #64b5f6;
+        }
+
+        /* Content */
+        .content {
+            padding: 60px 40px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #1e3c72;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2a5298;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 30px;
+            background: linear-gradient(135deg, #2a5298, #64b5f6);
+            border-radius: 3px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            color: #2a5298;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        /* Executive Summary Box */
+        .summary-box {
+            background: linear-gradient(135deg, #ecf0f1 0%, #bdc3c7 100%);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid #2a5298;
+            margin-bottom: 30px;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .summary-box li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .summary-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .summary-box strong {
+            color: #1e3c72;
+        }
+
+        /* Sequence Overview */
+        .overview-box {
+            background: #f8f9fa;
+            border: 2px solid #2a5298;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+
+        /* Cards */
+        .email-card {
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #2a5298;
+        }
+
+        .email-card:hover {
+            box-shadow: 0 10px 30px rgba(42, 82, 152, 0.1);
+            border-left-color: #64b5f6;
+        }
+
+        .email-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .email-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        .email-timing {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .email-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .detail-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #2a5298;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #1e3c72;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            color: #34495e;
+            margin-top: 5px;
+        }
+
+        .email-body {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #2c3e50;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        .why-it-works {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #27ae60;
+            margin-top: 15px;
+        }
+
+        .why-it-works strong {
+            color: #1b5e20;
+        }
+
+        .why-it-works ul {
+            list-style: none;
+            margin-left: 0;
+            margin-top: 10px;
+        }
+
+        .why-it-works li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #2e7d32;
+        }
+
+        .why-it-works li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        thead {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 0.95rem;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge.warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge.info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge.danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+
+        /* Principles */
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .principle {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ecf0f1 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+
+        .principle h4 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #2196f3;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1565c0;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #0d47a1;
+            font-weight: 600;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        .checklist input[type="checkbox"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #2a5298;
+        }
+
+        /* Color Sections */
+        .section-highlight {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff5cc 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .footer strong {
+            color: #64b5f6;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            .email-card {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .email-details {
+                grid-template-columns: 1fr;
+            }
+
+            .meta-info {
+                gap: 15px;
+            }
+
+            .principles {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📧 Contact Form Follow-Up Email Sequence</h1>
+            <p class="subtitle">Strategic Email Sequence Strategy for Zensar Technologies</p>
+            <div class="meta-info">
+                <div class="meta-item">
+                    <strong>Document Type:</strong> Email Sequence Strategy & Implementation Guide
+                </div>
+                <div class="meta-item">
+                    <strong>Date Created:</strong> May 13, 2026
+                </div>
+                <div class="meta-item">
+                    <strong>Target Audience:</strong> Prospective customers via contact form
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Executive Summary -->
+            <section>
+                <h2>Executive Summary</h2>
+                <div class="summary-box">
+                    <p style="margin-bottom: 20px;"><strong>Strategic Overview:</strong> This comprehensive email sequence transforms contact form inquiries into scheduled consultations through a systematic 4-email nurture campaign.</p>
+                    
+                    <h4 style="margin-top: 15px; color: #1e3c72;">Key Objectives:</h4>
+                    <ul>
+                        <li>Acknowledge prospective customer inquiries within 1 hour</li>
+                        <li>Provide immediate value through relevant resources and insights</li>
+                        <li>Move prospects toward consultation or product demo</li>
+                        <li>Build trust through educational content and social proof</li>
+                        <li>Maintain engagement until sales meeting is scheduled</li>
+                    </ul>
+                    
+                    <div style="background: white; padding: 15px; border-radius: 6px; margin-top: 15px;">
+                        <strong>Sequence Type:</strong> Lead Response & Nurture<br>
+                        <strong>Length:</strong> 4 emails over 10 days<br>
+                        <strong>Primary Goal:</strong> Secure a consultation/discovery call<br>
+                        <strong>Expected Conversion Rate:</strong> 8-15% contact forms → scheduled calls
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sequence Overview -->
+            <section>
+                <h2>Sequence Overview</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 40px;">
+                    <!-- Left Column -->
+                    <div>
+                        <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 25px; border-radius: 10px; border: 2px solid #2196f3; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                                <div style="font-size: 2rem;">📧</div>
+                                <div>
+                                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #0d47a1; font-weight: 700;">Sequence Name</div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: #1565c0;">Contact Form Follow-Up Series</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); padding: 25px; border-radius: 10px; border: 2px solid #9c27b0; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                                <div style="font-size: 2rem;">🎯</div>
+                                <div>
+                                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #4a148c; font-weight: 700;">Primary Goal</div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: #6a1b9a;">Schedule Consultation Call</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); padding: 25px; border-radius: 10px; border: 2px solid #e91e63;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                                <div style="font-size: 2rem;">⏱️</div>
+                                <div>
+                                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #880e4f; font-weight: 700;">Duration</div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: #ad1457;">10 Days (4 Emails)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div>
+                        <div style="background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%); padding: 25px; border-radius: 10px; border: 2px solid #009688; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                                <div style="font-size: 2rem;">🔔</div>
+                                <div>
+                                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #004d40; font-weight: 700;">Trigger</div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: #00695c;">Contact Form Submission</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #f1f8e9 0%, #dcedc8 100%); padding: 25px; border-radius: 10px; border: 2px solid #8bc34a; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                                <div style="font-size: 2rem;">📊</div>
+                                <div>
+                                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #33691e; font-weight: 700;">Expected Conversion</div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: #558b2f;">8-15% to Calls</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); padding: 25px; border-radius: 10px; border: 2px solid #ff9800;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                                <div style="font-size: 2rem;">✨</div>
+                                <div>
+                                    <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #e65100; font-weight: 700;">Type</div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: #ef6c00;">Lead Response & Nurture</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #fff9e6 0%, #fff5cc 100%); padding: 20px; border-radius: 10px; border-left: 4px solid #ffc107; margin-bottom: 40px;">
+                    <h4 style="color: #f57f17; margin-bottom: 15px;">📋 Exit Conditions</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #27ae60;">
+                            <div style="font-weight: 700; color: #27ae60; font-size: 1rem;">✓ Positive Exit</div>
+                            <div style="color: #555; font-size: 0.9rem; margin-top: 8px;">Schedules call → Welcome email to sales team</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #27ae60;">
+                            <div style="font-weight: 700; color: #27ae60; font-size: 1rem;">✓ Engagement Exit</div>
+                            <div style="color: #555; font-size: 0.9rem; margin-top: 8px;">Replies to email → Sales rep takes over</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #721c24;">
+                            <div style="font-weight: 700; color: #721c24; font-size: 1rem;">✗ Negative Exit</div>
+                            <div style="color: #555; font-size: 0.9rem; margin-top: 8px;">Unsubscribes → Removed from list</div>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #856404;">
+                            <div style="font-weight: 700; color: #856404; font-size: 1rem;">⏸ Pause & Retry</div>
+                            <div style="color: #555; font-size: 0.9rem; margin-top: 8px;">No engagement → 30-day pause</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Core Sequence Philosophy</h3>
+                <div class="principles">
+                    <div class="principle">
+                        <h4>1. One Email, One Job</h4>
+                        <p>Each email has a single clear purpose and one main CTA. No multi-tasking.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>2. Value Before Ask</h4>
+                        <p>Lead with usefulness. Build trust through content before requesting action.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>3. Relevance Over Volume</h4>
+                        <p>Fewer, better emails win. Quality outperforms frequency.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>4. Clear Path Forward</h4>
+                        <p>Every email moves prospects closer to a call. Make next steps obvious.</p>
+                    </div>
+                </div>
+
+                <h3>Sequence Flow Visualization</h3>
+                
+                <div style="background: white; padding: 30px; border-radius: 10px; border: 2px solid #ecf0f1; overflow-x: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; min-width: 900px; gap: 0;">
+                        <!-- Email 1 -->
+                        <div style="flex: 1; text-align: center;">
+                            <div style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); padding: 20px; border-radius: 10px; border: 3px solid #1976d2; margin-bottom: 15px;">
+                                <div style="font-size: 2.5rem; margin-bottom: 10px;">📧</div>
+                                <div style="font-weight: 700; color: #0d47a1; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Email 1</div>
+                                <div style="color: #1565c0; font-weight: 600; margin: 8px 0;">Welcome</div>
+                                <div style="color: #0d47a1; font-size: 0.85rem; font-weight: 600;">Day 0</div>
+                            </div>
+                            <div style="color: #555; font-size: 0.85rem; line-height: 1.4;">
+                                Thank You +<br>Acknowledge
+                            </div>
+                        </div>
+
+                        <!-- Arrow 1 -->
+                        <div style="flex: 0.3; text-align: center; color: #2a5298; font-size: 2rem; font-weight: 700;">→</div>
+
+                        <!-- Email 2 -->
+                        <div style="flex: 1; text-align: center;">
+                            <div style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); padding: 20px; border-radius: 10px; border: 3px solid #7b1fa2; margin-bottom: 15px;">
+                                <div style="font-size: 2.5rem; margin-bottom: 10px;">📧</div>
+                                <div style="font-weight: 700; color: #4a148c; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Email 2</div>
+                                <div style="color: #6a1b9a; font-weight: 600; margin: 8px 0;">Quick Win</div>
+                                <div style="color: #4a148c; font-size: 0.85rem; font-weight: 600;">Day 2</div>
+                            </div>
+                            <div style="color: #555; font-size: 0.85rem; line-height: 1.4;">
+                                Social Proof +<br>Credibility
+                            </div>
+                        </div>
+
+                        <!-- Arrow 2 -->
+                        <div style="flex: 0.3; text-align: center; color: #2a5298; font-size: 2rem; font-weight: 700;">→</div>
+
+                        <!-- Email 3 -->
+                        <div style="flex: 1; text-align: center;">
+                            <div style="background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); padding: 20px; border-radius: 10px; border: 3px solid #e91e63; margin-bottom: 15px;">
+                                <div style="font-size: 2.5rem; margin-bottom: 10px;">📧</div>
+                                <div style="font-weight: 700; color: #880e4f; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Email 3</div>
+                                <div style="color: #ad1457; font-weight: 600; margin: 8px 0;">Problem</div>
+                                <div style="color: #880e4f; font-size: 0.85rem; font-weight: 600;">Day 5</div>
+                            </div>
+                            <div style="color: #555; font-size: 0.85rem; line-height: 1.4;">
+                                Problem Diagnosis +<br>Social Proof
+                            </div>
+                        </div>
+
+                        <!-- Arrow 3 -->
+                        <div style="flex: 0.3; text-align: center; color: #2a5298; font-size: 2rem; font-weight: 700;">→</div>
+
+                        <!-- Email 4 -->
+                        <div style="flex: 1; text-align: center;">
+                            <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); padding: 20px; border-radius: 10px; border: 3px solid #ff9800; margin-bottom: 15px;">
+                                <div style="font-size: 2.5rem; margin-bottom: 10px;">📧</div>
+                                <div style="font-weight: 700; color: #e65100; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Email 4</div>
+                                <div style="color: #ef6c00; font-weight: 600; margin: 8px 0;">CTA</div>
+                                <div style="color: #e65100; font-size: 0.85rem; font-weight: 600;">Day 10</div>
+                            </div>
+                            <div style="color: #555; font-size: 0.85rem; line-height: 1.4;">
+                                Direct CTA +<br>Urgency
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 25px;">
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 4px solid #1976d2;">
+                        <div style="font-weight: 700; color: #0d47a1; font-size: 0.9rem;">📬 Email 1 Purpose</div>
+                        <div style="color: #555; font-size: 0.85rem; margin-top: 8px;">Set expectations & deliver immediate value</div>
+                    </div>
+                    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
+                        <div style="font-weight: 700; color: #4a148c; font-size: 0.9rem;">📬 Email 2 Purpose</div>
+                        <div style="color: #555; font-size: 0.85rem; margin-top: 8px;">Build credibility with case studies & proof</div>
+                    </div>
+                    <div style="background: #fce4ec; padding: 15px; border-radius: 8px; border-left: 4px solid #e91e63;">
+                        <div style="font-weight: 700; color: #880e4f; font-size: 0.9rem;">📬 Email 3 Purpose</div>
+                        <div style="color: #555; font-size: 0.85rem; margin-top: 8px;">Diagnose problems & show empathy</div>
+                    </div>
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 4px solid #ff9800;">
+                        <div style="font-weight: 700; color: #e65100; font-size: 0.9rem;">📬 Email 4 Purpose</div>
+                        <div style="color: #555; font-size: 0.85rem; margin-top: 8px;">Final push with urgency & value</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Email Sequence -->
+            <section>
+                <h2>Detailed Email Sequence</h2>
+
+                <!-- Email 1 -->
+                <div class="email-card">
+                    <div class="email-header">
+                        <div class="email-title">📬 Email 1: Welcome & Acknowledgment</div>
+                        <span class="email-timing">Day 0 (Immediate)</span>
+                    </div>
+
+                    <div class="email-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Send Timing</div>
+                            <div class="detail-value">Within 1 hour of form submission</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Primary CTA</div>
+                            <div class="detail-value">[Download Trends Report]</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Subject Line</div>
+                            <div class="detail-value">Your Zensar Inquiry – We're Here to Help</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Preview Text</div>
+                            <div class="detail-value">Expect to hear from our team within 24 hours</div>
+                        </div>
+                    </div>
+
+                    <h4>Email Body:</h4>
+                    <div class="email-body">Hi [First Name],
+
+Thanks for reaching out to Zensar—we really appreciate it.
+
+We received your inquiry and are already reviewing your specific needs. Our team is assembling the right resources to help, and you'll hear from us within the next 24 hours with a personalized response.
+
+In the meantime, here's something valuable:
+→ [LINK] "Digital Transformation Trends 2026" (2-min read)
+
+This gives context on where successful companies like [Industry Peers] are seeing the most ROI right now.
+
+Questions before we connect? Just reply to this email—we read everything.
+
+Looking forward to our conversation,
+
+[Sales Rep Name]
+Enterprise Solutions at Zensar
+[Phone] | [Direct Email]
+
+P.S. Do you have a preferred time to chat? Let me know and we'll make it work.</div>
+
+                    <div class="why-it-works">
+                        <strong>✓ Why This Works:</strong>
+                        <ul>
+                            <li>Acknowledges within 1 hour (sets expectations)</li>
+                            <li>Provides immediate value (trends report)</li>
+                            <li>Personalizes with industry context</li>
+                            <li>Invites reply (opens two-way conversation)</li>
+                            <li>Soft CTA (no heavy sell)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Email 2 -->
+                <div class="email-card">
+                    <div class="email-header">
+                        <div class="email-title">📬 Email 2: Quick Win Resource</div>
+                        <span class="email-timing">Day 2</span>
+                    </div>
+
+                    <div class="email-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Send Timing</div>
+                            <div class="detail-value">2 days after Email 1</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Primary CTA</div>
+                            <div class="detail-value">[Schedule 20-Min Call]</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Subject Line</div>
+                            <div class="detail-value">[First Name], this is working for companies like yours</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Preview Text</div>
+                            <div class="detail-value">See how [Industry/Company Size] is solving [pain point]</div>
+                        </div>
+                    </div>
+
+                    <h4>Email Body:</h4>
+                    <div class="email-body">Hi [First Name],
+
+Since you inquired about digital transformation, I wanted to share something specific.
+
+We just finished a case study with [Similar Company Type] in your space—they cut implementation time by 40% using our approach. Their biggest win? Going from 6-month to 3-month time-to-value.
+
+→ [LINK] Read the case study (5-min read)
+
+What stood out:
+• How they structured the engagement
+• The metrics they track
+• The specific outcomes in year 1
+
+I think you'll see parallels to where your organization is headed.
+
+Ready to explore what this could look like for you? I've opened my calendar here:
+
+→ [LINK] Pick a time for a 20-minute discovery call
+
+Looking forward,
+
+[Sales Rep Name]
+Zensar | Digital Solutions
+[Direct Contact]</div>
+
+                    <div class="why-it-works">
+                        <strong>✓ Why This Works:</strong>
+                        <ul>
+                            <li>Social proof via case study (builds credibility)</li>
+                            <li>Specific metrics and outcomes (shows value)</li>
+                            <li>Parallels to prospect's situation (shows research)</li>
+                            <li>Low-pressure invitation (20 minutes, not 1 hour)</li>
+                            <li>Direct calendar link (removes friction)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Email 3 -->
+                <div class="email-card">
+                    <div class="email-header">
+                        <div class="email-title">📬 Email 3: Social Proof & Results</div>
+                        <span class="email-timing">Day 5</span>
+                    </div>
+
+                    <div class="email-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Send Timing</div>
+                            <div class="detail-value">5 days after Email 1</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Primary CTA</div>
+                            <div class="detail-value">[Schedule Discovery Call]</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Subject Line</div>
+                            <div class="detail-value">Quick question: What's your biggest blocker right now?</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Preview Text</div>
+                            <div class="detail-value">We've helped 200+ companies overcome this</div>
+                        </div>
+                    </div>
+
+                    <h4>Email Body:</h4>
+                    <div class="email-body">Hi [First Name],
+
+I've been thinking about your initial inquiry. Most organizations reaching out to us are stuck in one of three places:
+
+1. **Legacy System Lock-in**
+   "Our infrastructure is so old, transformation feels impossible"
+
+2. **Team Capacity**
+   "We want to modernize but we don't have the bandwidth"
+
+3. **ROI Uncertainty**
+   "We don't have a clear roadmap from where we are to where we need to be"
+
+Curious—which one resonates most with your situation?
+
+We've guided 200+ enterprises through exactly this. Our approach starts by mapping *your* specific constraints, then building a phased plan that fits your team and budget.
+
+→ [LINK] See how other companies structured their journey
+
+If you want to dig into what's realistic for your organization, let's talk. I'll come prepared with initial recommendations.
+
+→ [LINK] Find a time: 20-minute call with me
+
+Best,
+
+[Sales Rep Name]
+Zensar | Enterprise Transformation
+[Phone] | [Email]
+
+P.S. If now isn't the right time, that's totally fine. I'm here when you're ready. Just hit reply.</div>
+
+                    <div class="why-it-works">
+                        <strong>✓ Why This Works:</strong>
+                        <ul>
+                            <li>Problem diagnosis (shows understanding)</li>
+                            <li>Normalizes the challenge (you're not alone)</li>
+                            <li>Asks clarifying question (encourages response)</li>
+                            <li>Removes pressure ("now isn't the right time")</li>
+                            <li>Positions expertise ("we've guided 200+")</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Email 4 -->
+                <div class="email-card">
+                    <div class="email-header">
+                        <div class="email-title">📬 Email 4: Direct Call-to-Action + Urgency</div>
+                        <span class="email-timing">Day 10</span>
+                    </div>
+
+                    <div class="email-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Send Timing</div>
+                            <div class="detail-value">10 days after Email 1</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Primary CTA</div>
+                            <div class="detail-value">[Book Your Slot]</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Subject Line</div>
+                            <div class="detail-value">One last thing—let's make this real</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Preview Text</div>
+                            <div class="detail-value">I saved you a spot this week</div>
+                        </div>
+                    </div>
+
+                    <h4>Email Body:</h4>
+                    <div class="email-body">Hi [First Name],
+
+I realize I might be hitting your inbox at a busy time. But here's why I'm following up one more time:
+
+The teams we work with who **move first** on digital transformation typically see competitive advantage within 90 days. The ones who wait? They risk falling behind.
+
+Your inquiry tells me this is on your radar. I want to make sure we give it the attention it deserves—not next quarter, but now.
+
+Here's what I'm thinking:
+
+**Let's do a quick 20-minute call this week.** I'll come with:
+- Initial assessment of your situation
+- 2-3 quick wins we could implement in 30 days
+- A clear roadmap for the next 6 months
+
+→ [LINK] I've blocked time: Pick a slot that works
+
+**Can't do this week?** Just reply with your preferred timing in the next 2 weeks, and I'll make it happen.
+
+If you're not ready yet, no problem—I'll check back in a month.
+
+Ready to move?
+
+[Sales Rep Name]
+Zensar Enterprise Solutions
+[Direct Contact]
+
+P.S. Here's a quick reference for our process: [LINK] 2-page overview</div>
+
+                    <div class="why-it-works">
+                        <strong>✓ Why This Works:</strong>
+                        <ul>
+                            <li>Creates urgency (competitive advantage/first-mover benefit)</li>
+                            <li>Specific value (quick wins + roadmap)</li>
+                            <li>Removes friction (link provided, no need to ask)</li>
+                            <li>Respects prospect timeline (2-week buffer)</li>
+                            <li>Graceful exit (month-long pause if not ready)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sequence Timing & Triggers -->
+            <section>
+                <h2>Sequence Timing & Triggers</h2>
+                
+                <h3>Send Timeline</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Send Timing</th>
+                            <th>Trigger</th>
+                            <th>Status</th>
+                            <th>Key Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Email 1</strong></td>
+                            <td>Day 0 (within 1 hour)</td>
+                            <td>Form submission</td>
+                            <td><span class="badge success">Automated</span></td>
+                            <td>Immediate acknowledgment is critical</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email 2</strong></td>
+                            <td>Day 2</td>
+                            <td>No click on Email 1</td>
+                            <td><span class="badge info">Conditional</span></td>
+                            <td>If engaged, skip to personalized outreach</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email 3</strong></td>
+                            <td>Day 5</td>
+                            <td>No meeting scheduled</td>
+                            <td><span class="badge info">Conditional</span></td>
+                            <td>Increases value/urgency</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email 4</strong></td>
+                            <td>Day 10</td>
+                            <td>No engagement</td>
+                            <td><span class="badge info">Conditional</span></td>
+                            <td>Final push before 30-day pause</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Exit Conditions</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div style="background: #d4edda; padding: 20px; border-radius: 8px; border-left: 4px solid #27ae60;">
+                        <h4 style="color: #155724;">✓ Positive Exit</h4>
+                        <p style="color: #155724;">User schedules call → Welcome email sent to sales team</p>
+                    </div>
+                    <div style="background: #d4edda; padding: 20px; border-radius: 8px; border-left: 4px solid #27ae60;">
+                        <h4 style="color: #155724;">✓ Engagement Exit</h4>
+                        <p style="color: #155724;">User replies with specific question → Sales rep takes over</p>
+                    </div>
+                    <div style="background: #f8d7da; padding: 20px; border-radius: 8px; border-left: 4px solid #721c24;">
+                        <h4 style="color: #721c24;">✗ Negative Exit</h4>
+                        <p style="color: #721c24;">Unsubscribe → Removes from marketing list</p>
+                    </div>
+                    <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #856404;">
+                        <h4 style="color: #856404;">⏸ Pause</h4>
+                        <p style="color: #856404;">No engagement after Email 4 → 30-day wait, then re-engagement sequence</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Subject Line Strategy -->
+            <section>
+                <h2>Subject Line Strategy</h2>
+                
+                <div style="display: grid; gap: 20px; margin: 25px 0;">
+                    <div style="background: white; border: 2px solid #e3f2fd; border-radius: 8px; padding: 20px; border-left: 4px solid #1976d2;">
+                        <h4>Email 1: Direct + Personal</h4>
+                        <p style="font-style: italic; color: #1976d2; font-weight: 600; margin: 10px 0;">"Your Zensar Inquiry – We're Here to Help"</p>
+                        <p><strong>Why it works:</strong> Confirms receipt + positions helpfulness</p>
+                    </div>
+
+                    <div style="background: white; border: 2px solid #f3e5f5; border-radius: 8px; padding: 20px; border-left: 4px solid #7b1fa2;">
+                        <h4>Email 2: Social Proof + Curiosity</h4>
+                        <p style="font-style: italic; color: #7b1fa2; font-weight: 600; margin: 10px 0;">"[First Name], this is working for companies like yours"</p>
+                        <p><strong>Why it works:</strong> Personalized + shows relevance + implies success</p>
+                    </div>
+
+                    <div style="background: white; border: 2px solid #fce4ec; border-radius: 8px; padding: 20px; border-left: 4px solid #d81b60;">
+                        <h4>Email 3: Question + High-Value</h4>
+                        <p style="font-style: italic; color: #d81b60; font-weight: 600; margin: 10px 0;">"Quick question: What's your biggest blocker right now?"</p>
+                        <p><strong>Why it works:</strong> Invites engagement + positions you as problem-solver</p>
+                    </div>
+
+                    <div style="background: white; border: 2px solid #fff3e0; border-radius: 8px; padding: 20px; border-left: 4px solid #f57c00;">
+                        <h4>Email 4: Urgency + Action</h4>
+                        <p style="font-style: italic; color: #f57c00; font-weight: 600; margin: 10px 0;">"One last thing—let's make this real"</p>
+                        <p><strong>Why it works:</strong> Creates FOMO + positions momentum</p>
+                    </div>
+                </div>
+
+                <h3>Subject Line Best Practices</h3>
+                <div class="section-highlight">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <h4 style="color: #b8860b;">✓ DO:</h4>
+                            <ul style="margin-left: 20px;">
+                                <li>Specificity over cleverness</li>
+                                <li>Benefit or curiosity-driven</li>
+                                <li>Personalization (first name)</li>
+                                <li>40-60 characters ideal</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: #dc143c;">✗ AVOID:</h4>
+                            <ul style="margin-left: 20px;">
+                                <li>Spam words: FREE, URGENT, CLICK NOW</li>
+                                <li>Excessive emojis (polarizing)</li>
+                                <li>ALL CAPS or multiple ???</li>
+                                <li>Generic subject lines</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metrics & KPIs -->
+            <section>
+                <h2>Metrics & Success Tracking</h2>
+                
+                <h3>Key Performance Indicators (KPIs)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Industry Benchmark</th>
+                            <th>Target Goal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Email 1 Open Rate</strong></td>
+                            <td>45-55%</td>
+                            <td><span class="badge success">50%+</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email 1 Click Rate</strong></td>
+                            <td>8-12%</td>
+                            <td><span class="badge success">10%+</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email 2 Open Rate</strong></td>
+                            <td>35-45%</td>
+                            <td><span class="badge success">40%+</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email 2 Click-to-Calendar</strong></td>
+                            <td>3-5%</td>
+                            <td><span class="badge success">5%+</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email 3 Open Rate</strong></td>
+                            <td>25-35%</td>
+                            <td><span class="badge success">30%+</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email 4 Open Rate</strong></td>
+                            <td>20-30%</td>
+                            <td><span class="badge success">25%+</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sequence Booking Rate</strong></td>
+                            <td>8-15%</td>
+                            <td><span class="badge success">12%+</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time to First Response</strong></td>
+                            <td>2-3 days</td>
+                            <td><span class="badge success">&lt;48 hrs</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Overall Reply Rate</strong></td>
+                            <td>5-10%</td>
+                            <td><span class="badge success">8%+</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>What to Measure</h3>
+                <div class="principles">
+                    <div class="principle">
+                        <h4>📊 Engagement</h4>
+                        <p>Opens, clicks, replies per email. Track drop-off points to identify weak emails.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>🎯 Conversion</h4>
+                        <p>Meetings booked from sequence. This is your north star metric.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>⏱️ Time-to-Action</h4>
+                        <p>How quickly prospects respond. Faster = more intent.</p>
+                    </div>
+                    <div class="principle">
+                        <h4>🔗 Content Performance</h4>
+                        <p>Which emails/resources drive clicks. Update underperformers.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Implementation Checklist -->
+            <section>
+                <h2>Implementation Checklist</h2>
+
+                <h3>Pre-Launch Setup</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Configure email automation in CRM/marketing platform</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Create calendar link (Calendly, Acuity, or internal system)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Prepare case study PDFs for distribution</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Set up tracking links (UTM parameters for analytics)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Assign sales rep ownership (if load-balanced)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Create "meeting scheduled" workflow trigger</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Build 30-day re-engagement sequence (if no response)</label>
+                    </div>
+                </div>
+
+                <h3>Content Prep</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Customize case studies by industry (prepare 3-5 versions)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Prepare talking points for sales reps (before calls)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Create one-pager on company process</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Design email templates in mail platform</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>A/B test subject lines (Email 1 & 2)</label>
+                    </div>
+                </div>
+
+                <h3>Testing & Optimization</h3>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Send test emails to internal team</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Check mobile rendering (60%+ opens on mobile)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Verify all links work and track correctly</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Test calendar booking flow</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Monitor first 100 sends for issues</label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Metrics Summary -->
+            <section>
+                <h2>Expected Outcomes</h2>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">8-15%</div>
+                        <div class="metric-label">Contact Forms to Calls</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">&lt;48 hrs</div>
+                        <div class="metric-label">Average Response Time</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">50%+</div>
+                        <div class="metric-label">Email 1 Open Rate</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">12%+</div>
+                        <div class="metric-label">Booking Rate Target</div>
+                    </div>
+                </div>
+
+                <div class="section-highlight" style="margin-top: 30px;">
+                    <h3>Success Definition</h3>
+                    <p>This contact form follow-up sequence is designed to:</p>
+                    <ul>
+                        <li><strong>✓ Acknowledge</strong> prospects within 1 hour</li>
+                        <li><strong>✓ Provide immediate value</strong> (not just sell)</li>
+                        <li><strong>✓ Build trust</strong> through social proof and expertise</li>
+                        <li><strong>✓ Move toward consultation</strong> without being pushy</li>
+                        <li><strong>✓ Set clear expectations</strong> and timelines</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section>
+                <h2>Next Steps & Recommendations</h2>
+
+                <h3>Immediate Actions (Week 1-4)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div style="background: #e1f5fe; padding: 20px; border-radius: 8px; border-left: 4px solid #01579b;">
+                        <h4 style="color: #01579b;">Week 1</h4>
+                        <p>Build automation in your email/CRM platform</p>
+                    </div>
+                    <div style="background: #f0f4c3; padding: 20px; border-radius: 8px; border-left: 4px solid #827717;">
+                        <h4 style="color: #827717;">Week 2</h4>
+                        <p>A/B test subject lines on Email 1</p>
+                    </div>
+                    <div style="background: #f3e5f5; padding: 20px; border-radius: 8px; border-left: 4px solid #4a148c;">
+                        <h4 style="color: #4a148c;">Week 3</h4>
+                        <p>Launch to new contact form submissions</p>
+                    </div>
+                    <div style="background: #e0f2f1; padding: 20px; border-radius: 8px; border-left: 4px solid #004d40;">
+                        <h4 style="color: #004d40;">Week 4</h4>
+                        <p>Review performance data and adjust</p>
+                    </div>
+                </div>
+
+                <h3>30-Day Optimization Plan</h3>
+                <ul>
+                    <li>Monitor open/click rates against benchmarks</li>
+                    <li>Identify best-performing subject lines</li>
+                    <li>Gather feedback from sales team on engagement quality</li>
+                    <li>Adjust timings if needed (e.g., if Email 2 opens are low, extend to Day 3)</li>
+                </ul>
+
+                <h3>Long-Term Strategy</h3>
+                <ul>
+                    <li><strong>Build 2nd sequence:</strong> For prospects who don't book after Email 4 (re-engagement)</li>
+                    <li><strong>Segment by industry:</strong> Create case study variations</li>
+                    <li><strong>Win/loss analysis:</strong> Why do some book and others don't?</li>
+                    <li><strong>Sales coordination:</strong> Ensure reps have talking points before calls</li>
+                </ul>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Contact Form Follow-Up Email Sequence</strong></p>
+            <p>Document Version 1.0 | Last Updated: May 13, 2026</p>
+            <p>Prepared for: <strong>Zensar Technologies</strong></p>
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">This document is confidential and designed for executive review. For questions or implementation support, contact your marketing team.</p>
+        </div>
+    </div>
+</body>
+</html>
